@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JustiVoxia</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #0f0f1a; color: white; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: #16213e; }
+        nav h1 { color: #4e9af1; font-size: 28px; }
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav ul li a { color: white; text-decoration: none; font-size: 16px; }
+        nav ul li a:hover { color: #4e9af1; }
+        .hero { text-align: center; padding: 100px 20px; }
+        .hero h2 { font-size: 48px; margin-bottom: 20px; color: #4e9af1; }
+        .hero p { font-size: 20px; color: #aaaaaa; margin-bottom: 40px; }
+        .hero button { background-color: #4e9af1; color: white; border: none; padding: 15px 40px; font-size: 18px; border-radius: 30px; cursor: pointer; }
+        .hero button:hover { background-color: #357abd; }
+        .services { display: flex; justify-content: center; gap: 30px; padding: 60px 50px; flex-wrap: wrap; }
+        .card { background-color: #16213e; border-radius: 15px; padding: 30px; width: 280px; text-align: center; }
+        .card .icon { font-size: 50px; margin-bottom: 15px; }
+        .card h3 { color: #4e9af1; margin-bottom: 10px; font-size: 20px; }
+        .card p { color: #aaaaaa; font-size: 15px; }
+        footer { text-align: center; padding: 20px; color: #555; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>JustiVoxia</h1>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Travail</a></li>
+            <li><a href="#">Visa</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <h2>Votre assistant juridique intelligent</h2>
+        <p>Posez vos questions sur le droit du travail ou les démarches visa.<br>JustiVoxia vous répond instantanément.</p>
+        <button onclick="window.location.href='/chat'">Commencer maintenant</button>
+    </div>
+    <div class="services">
+        <div class="card">
+            <div class="icon">⚖️</div>
+            <h3>Droit du Travail</h3>
+            <p>Licenciement, contrat, harcèlement... Obtenez des réponses claires sans avocat.</p>
+        </div>
+        <div class="card">
+            <div class="icon">✈️</div>
+            <h3>Démarches Visa</h3>
+            <p>Toutes les procédures visa dans le monde expliquées simplement.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🤖</div>
+            <h3>Chatbot Intelligent</h3>
+            <p>Notre IA répond à vos questions 24h/24, 7j/7, en temps réel.</p>
+        </div>
+    </div>
+    <footer>
+        <p>© 2026 JustiVoxia - Tous droits réservés</p>
+    </footer>
+</body>
+</html>
