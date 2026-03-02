@@ -1,484 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6P7PKH38XF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-6P7PKH38XF');
-</script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JustiVoxia — Assistant Juridique IA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <title>JustiVoxia — Conseil juridique intelligent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    :root {
-      --v1: #6c3fff;
-      --v2: #4f46e5;
-      --b1: #2563eb;
-      --b2: #06b6d4;
-      --dark: #09090f;
-      --card: #12121e;
-      --border: rgba(108, 63, 255, 0.25);
-      --text: #e8e8f0;
-      --muted: #8888aa;
-    }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    html { scroll-behavior: smooth; font-size: 14px; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--dark);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            line-height: 1.6;
+        }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 20% -10%, rgba(108,63,255,0.35) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 110%, rgba(37,99,235,0.3) 0%, transparent 55%);
-      pointer-events: none;
-      z-index: 0;
-    }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+        }
 
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0.9rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(9, 9, 15, 0.7);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
+        .logo {
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
 
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      background: linear-gradient(135deg, #a78bfa, #60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+        .cta-nav {
+            background: #C6A75E;
+            color: #0F172A;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
 
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 1.1rem;
-      background: linear-gradient(135deg, var(--v1), var(--b1));
-      border-radius: 50px;
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+        .cta-nav:hover {
+            opacity: 0.85;
+        }
 
-    .hero {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 5rem 1.5rem 3rem;
-    }
+        .hero {
+            text-align: center;
+            padding: 100px 10% 80px;
+            max-width: 900px;
+            margin: auto;
+        }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.9rem;
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      font-size: 0.72rem;
-      color: #a78bfa;
-      background: rgba(108, 63, 255, 0.1);
-      margin-bottom: 1.5rem;
-      animation: fadeDown 0.8s ease both;
-    }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
 
-    .badge-dot {
-      width: 5px; height: 5px;
-      background: #a78bfa;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
+        .hero p {
+            font-size: 20px;
+            color: #CBD5E1;
+            margin-bottom: 40px;
+        }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
+        .cta-main {
+            background: #C6A75E;
+            color: #0F172A;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
 
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.2rem;
-      animation: fadeUp 0.9s ease 0.1s both;
-    }
+        .cta-main:hover {
+            opacity: 0.85;
+        }
 
-    h1 span {
-      background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+        .card {
+            background: #1E293B;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 750px;
+            border: 1px solid #334155;
+        }
 
-    .hero-sub {
-      font-size: clamp(0.82rem, 1.5vw, 0.95rem);
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.9s ease 0.2s both;
-      font-weight: 300;
-    }
+        .question {
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #F1F5F9;
+        }
 
-    .hero-actions {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.9s ease 0.3s both;
-    }
+        .answer {
+            color: #CBD5E1;
+        }
 
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.6rem;
-      background: linear-gradient(135deg, var(--v1), var(--b1));
-      border-radius: 50px;
-      color: #fff;
-      font-size: 0.88rem;
-      font-weight: 500;
-      text-decoration: none;
-      box-shadow: 0 0 25px rgba(108,63,255,0.4);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(108,63,255,0.5); }
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 14px;
+            color: #94A3B8;
+        }
 
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.6rem;
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      color: var(--text);
-      font-size: 0.88rem;
-      font-weight: 400;
-      text-decoration: none;
-      background: rgba(255,255,255,0.04);
-      transition: background 0.2s, transform 0.2s;
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+        @media(max-width: 768px){
+            .hero h1 {
+                font-size: 36px;
+            }
 
-    .hero-card {
-      margin-top: 3rem;
-      width: 100%;
-      max-width: 560px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem;
-      animation: fadeUp 1s ease 0.4s both;
-      box-shadow: 0 0 50px rgba(108,63,255,0.12), 0 20px 50px rgba(0,0,0,0.4);
-    }
+            .hero p {
+                font-size: 18px;
+            }
+        }
 
-    .chat-preview { display: flex; flex-direction: column; gap: 0.8rem; }
-
-    .msg { display: flex; gap: 0.6rem; align-items: flex-start; }
-
-    .msg-avatar {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.78rem;
-    }
-
-    .msg-user .msg-avatar { background: linear-gradient(135deg, #374151, #1f2937); color: #9ca3af; }
-    .msg-bot .msg-avatar { background: linear-gradient(135deg, var(--v1), var(--b1)); color: #fff; }
-
-    .msg-bubble {
-      padding: 0.6rem 0.85rem;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      line-height: 1.6;
-      max-width: 80%;
-    }
-
-    .msg-user .msg-bubble {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .msg-bot .msg-bubble {
-      background: rgba(108,63,255,0.12);
-      border: 1px solid rgba(108,63,255,0.2);
-      color: #c4b5fd;
-    }
-
-    .features {
-      position: relative;
-      z-index: 1;
-      padding: 4rem 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #a78bfa;
-      margin-bottom: 0.8rem;
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.3rem, 3vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 2rem;
-      max-width: 420px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-
-    .feature-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.4rem;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .feature-card:hover { border-color: rgba(108,63,255,0.6); transform: translateY(-3px); }
-
-    .feat-icon {
-      width: 38px; height: 38px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--v1), var(--b1));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 15px rgba(108,63,255,0.3);
-    }
-
-    .feat-title { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 600; margin-bottom: 0.4rem; }
-    .feat-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
-
-    .stats {
-      position: relative;
-      z-index: 1;
-      padding: 2rem 1.5rem 4rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.4rem;
-      text-align: center;
-    }
-
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.9rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #a78bfa, #60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
-
-    .cta-banner {
-      position: relative;
-      z-index: 1;
-      margin: 0 1.5rem 4rem;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-      background: linear-gradient(135deg, rgba(108,63,255,0.2), rgba(37,99,235,0.2));
-      border: 1px solid rgba(108,63,255,0.35);
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .cta-banner::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(108,63,255,0.12), transparent);
-      pointer-events: none;
-    }
-
-    .cta-banner h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
-    }
-
-    .cta-banner p { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.88rem; }
-
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 1.5rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.75rem;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: 0.8rem 1rem; }
-      .hero { padding: 4.5rem 1rem 2.5rem; }
-    }
-  </style>
+    </style>
 </head>
+
 <body>
 
-  <nav>
-    <span class="logo">⚖ JustiVoxia</span>
-    <a href="/chat" class="nav-cta">Poser une question →</a>
-  </nav>
+<header>
+    <div class="logo">JustiVoxia</div>
+    <a href="#" class="cta-nav">Poser une question</a>
+</header>
 
-  <section class="hero">
-    <div class="badge">
-      <span class="badge-dot"></span>
-      Propulsé par Llama 3.3 · 70B
+<section class="hero">
+    <h1>Un conseil juridique fiable. Immédiatement.</h1>
+    <p>Droit du travail, visas et contrats.  
+    Des réponses claires, en français, 24h/24.</p>
+
+    <a href="#" class="cta-main">Parler à un conseiller juridique</a>
+</section>
+
+<div class="card">
+    <div class="question">
+        Mon employeur peut-il me licencier pendant mon arrêt maladie ?
     </div>
-
-    <h1>Votre avocat<br /><span>intelligent</span>, 24h/24</h1>
-
-    <p class="hero-sub">
-      Droit du travail, démarches visa, contrats — JustiVoxia répond à vos questions juridiques en français, clairement et gratuitement.
-    </p>
-
-    <div class="hero-actions">
-      <a href="/chat" class="btn-primary">💬 Commencer maintenant</a>
-      <a href="#features" class="btn-secondary">Découvrir →</a>
+    <div class="answer">
+        En principe non — tout licenciement doit reposer sur une cause réelle et sérieuse indépendante de votre état de santé.
     </div>
+</div>
 
-    <div class="hero-card">
-      <div class="chat-preview">
-        <div class="msg msg-user">
-          <div class="msg-avatar">👤</div>
-          <div class="msg-bubble">Mon employeur peut-il me licencier pendant mon arrêt maladie ?</div>
-        </div>
-        <div class="msg msg-bot">
-          <div class="msg-avatar">⚖</div>
-          <div class="msg-bubble">En principe non — tout licenciement doit reposer sur une cause réelle et sérieuse indépendante de votre état de santé.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="features" id="features">
-    <p class="section-label">Fonctionnalités</p>
-    <h2 class="section-title">Tout ce dont vous avez besoin</h2>
-    <div class="grid-3">
-      <div class="feature-card">
-        <div class="feat-icon">⚖️</div>
-        <h3 class="feat-title">Droit du travail</h3>
-        <p class="feat-desc">Licenciement, contrats, congés, heures supplémentaires — obtenez des réponses claires sur vos droits.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">✈️</div>
-        <h3 class="feat-title">Visa & Immigration</h3>
-        <p class="feat-desc">Démarches visa, titres de séjour, regroupement familial — naviguer dans les procédures complexes devient simple.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🔒</div>
-        <h3 class="feat-title">Confidentiel</h3>
-        <p class="feat-desc">Vos questions restent privées. Nous ne conservons aucune donnée personnelle identifiable.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🌍</div>
-        <h3 class="feat-title">Couverture mondiale</h3>
-        <p class="feat-desc">Informations sur les réglementations dans de nombreux pays à travers le monde.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">⚡</div>
-        <h3 class="feat-title">Réponse instantanée</h3>
-        <p class="feat-desc">Obtenez une réponse en secondes, à toute heure du jour ou de la nuit, sans rendez-vous.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">💬</div>
-        <h3 class="feat-title">Langage simple</h3>
-        <p class="feat-desc">Le jargon juridique traduit en français clair — accessible à tous, sans formation juridique.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats">
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num">70B</div><div class="stat-label">Paramètres IA</div></div>
-      <div class="stat-card"><div class="stat-num">24/7</div><div class="stat-label">Disponibilité</div></div>
-      <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">Gratuit</div></div>
-      <div class="stat-card"><div class="stat-num">🌍</div><div class="stat-label">Mondial</div></div>
-    </div>
-  </section>
-
-  <div class="cta-banner" style="margin-bottom:4rem;">
-    <h2>Prêt à obtenir vos réponses ?</h2>
-    <p>Posez votre première question juridique — c'est gratuit et immédiat.</p>
-    <a href="/chat" class="btn-primary">💬 Parler à JustiVoxia</a>
-  </div>
-
-  <footer>
-    <p>⚖ <strong>JustiVoxia</strong> — Assistant juridique IA · Informations à titre indicatif, ne remplace pas un avocat</p>
-    <p style="margin-top:0.3rem; opacity:0.5;">Propulsé par Llama 3.3 · 70B via Groq</p>
-  </footer>
+<footer>
+    © 2026 JustiVoxia — Assistance juridique digitale
+</footer>
 
 </body>
 </html>
-```
-
